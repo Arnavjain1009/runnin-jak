@@ -19,6 +19,12 @@ function setup(){
   path.scale=2.2;
 
   runner = createSprite(200,240,20,50);
+  boundary1 = createSprite(0,0,1,800);
+  boundary1.shapecolor="green";
+  boundary1.visible = false;
+  boundary2 = createSprite(400,0,1,800);
+  boundary2.shapecolor="green";
+  boundary2.visible = false;
   runner.addAnimation("running", runner_running);
   runner.scale = 0.75;
 
@@ -26,38 +32,26 @@ function setup(){
 }
 
 function draw() {
+   background(220);
 
-background(220);
-if(path.y > 400 ){
-   path.y = height/2;}
+   runner.x = mouseX;
 
-   if(keyDown("left")){
-   //then move x -3 velocity;
-runner.velocityX = -3;
+   if (runner.isTouching (boundary2) || runner.isTouching (boundary1)) {
+      runner.x = 200;
    }
+
+   if(path.y > 400 ){
+      path.y = height/2;}
+   /*
+      if(keyDown("left")){
+      //then move x -3 velocity;
+   runner.velocityX = -3;
+      }
 
    if(keyDown("right")){
     //then move x 3 velocity;
  runner.velocityX = 3;
-    }
+    }*/
  
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 drawSprites(); 
 }
